@@ -13,7 +13,7 @@ class Video(models.Model):
     slug = models.SlugField(max_length=264, unique=True)
     video_link = models.URLField(max_length=264, unique=False)
     video_description = models.TextField(verbose_name="Video description")
-    video = models.FileField(upload_to='video-files', verbose_name='video'
+    video = models.FileField(upload_to='video-files', verbose_name='video',
                              validators=[FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
     video_thumb = models.ImageField(
         upload_to='video_thumbs', verbose_name='thumb')

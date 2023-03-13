@@ -6,4 +6,4 @@ from django.views.generic import CreateView, UpdateView, DeleteView, ListView, V
 
 
 class BlogList(TemplateView):
-    template_name = "index.html"
+    template_name = "App_Video/index.html"

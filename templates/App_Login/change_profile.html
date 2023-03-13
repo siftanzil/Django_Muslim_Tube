@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block title_block %}
-Sign Up
-{% endblock title_block %}
+Change profile
+{% endblock  %}
 {% block body_block %}
 
 {% if registered %}
-<div class="alert alert-success">Account created successfully</div>
+<div class="alert alert-success">Profile changed successfully</div>
 {% else %}
 
 <h2>Create New Account:</h2>
@@ -15,8 +15,6 @@ Sign Up
     {% csrf_token %}
     <button type="submit" class="btn btn-success">Create Account</button>
 </form>
-<br>
-<p>Already Have an account?<a href="{% url 'App_Login:login_profile' %}">login Here</a></p>
 
 {% endif %}
 {% endblock body_block %}
