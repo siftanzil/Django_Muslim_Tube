@@ -12,7 +12,7 @@
         <!-- Font Awesome -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-        <title>{% block title_block %} Blogs {% endblock %} </title>
+        <title>{% block title_block %} Islamic Lectures {% endblock %} </title>
     </head>
 
     <body>
@@ -38,7 +38,10 @@
                                 @{{user.username}}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'App_Login:profile' %}">Your Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'App_Video:upload_video' %}">Upload Video</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'App_Video:my_videos' %}">My Videos</a></li>
+                                <li><a class="dropdown-item" href="{% url 'App_Login:profile' %}">My Profile</a></li>
                                 <hr>
                                 <li><a class="dropdown-item" href="{% url 'App_Login:logout_profile' %}">logout</a></li>
                             </ul>

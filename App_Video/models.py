@@ -2,6 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 
+category_choices = (
+    ("1", "Quran"),
+    ("2", "Hadith"),
+    ("3", "Fiqh"),
+    ("4", "Heart Softener"),
+    ("5", "Biography"),
+    ("6", "Debate"),
+    ("7", "Dawah")
+)
+
 # Create your models here.
 
 
@@ -13,6 +23,8 @@ class Video(models.Model):
     slug = models.SlugField(max_length=264, unique=True)
     video_link = models.URLField(max_length=264, unique=False)
     video_description = models.TextField(verbose_name="Video description")
+    category = models.CharField(
+        max_length=21, choices=category_choices, default='Others')
     video = models.FileField(upload_to='video-files', verbose_name='video',
                              validators=[FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
     video_thumb = models.ImageField(

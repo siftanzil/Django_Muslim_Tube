@@ -1,9 +1,7 @@
-from django.shortcuts import render, HttpResponseRedirect
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView, View, TemplateView
+from django.http import HttpResponse
+from django.urls import reverse
+from django.shortcuts import HttpResponseRedirect
 
 
-# Create your views here.
-
-
-class BlogList(TemplateView):
-    template_name = "App_Video/index.html"
+def Index(request):
+    return HttpResponseRedirect(reverse('App_Video:video_list'))

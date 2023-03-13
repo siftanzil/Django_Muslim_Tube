@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title_block %} {{user}} {% endblock %}
+{% block body_block %}
+{% for video in user.video_uploader.all %}
+<h3>{{video.video_title}}</h3>
+<h6>{{video.publish_date}}</h6>
+<div class="container">
+
+    <div class="col-sm-6">
+        <a href="{% url 'App_Video:play_video' slug=video.slug %}">
+            <img src="/media/{{video.video_thumb}}" width="100%"></a>
+    </div>
+    <a href="{% url 'App_Video:update_video' pk=video.pk %}">Update Video</a>
+
+</div>
+
+<hr>
+{% endfor %}
+{% endblock %}

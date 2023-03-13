@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title_block %} Islamic Lectures {% endblock %}
+{% block body_block %}
+<h1>Category View</h1>
+{% for video in videos %}
+<h1>{{ video.category }}</h1>
+
+<br>
+{% endfor %}
+
+
+{% endblock %}

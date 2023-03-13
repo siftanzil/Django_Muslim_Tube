@@ -9,8 +9,8 @@ from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("account/", include("App_Login.urls")),
-    path('blog/', include("App_Video.urls")),
-    path('', views.BlogList.as_view(), name="index"),
+    path('video/', include("App_Video.urls")),
+    path('', views.Index, name="index"),
 ]
 
 
