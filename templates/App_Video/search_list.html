@@ -1,9 +1,22 @@
 {% extends 'base.html' %}
 {% block title_block %} Islamic Lectures {% endblock %}
 {% block body_block %}
-<h2>Videos in "{{category}}" category</h2>
+
+
+{% if searched %}
+<h2>You searched for... {{searched}}</h2>
+{% else %}
+<h2>You didn't search anything</h2>
+{% endif %}
+
+
 <hr>
 <br>
+
+{% if videos %}
+
+
+
 {% for video in videos %}
 <h5>{{video.video_title}}</h5>
 <h6><i>{{video.publish_date}}</i></h6>
@@ -21,4 +34,5 @@
 </div>
 <hr>
 {% endfor %}
+{% endif %}
 {% endblock %}

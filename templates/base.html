@@ -16,7 +16,7 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -24,7 +24,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav mr-auto">
 
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'index' %}"><img
@@ -32,20 +32,18 @@
                         </li>
 
                         {% if user.is_authenticated %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                @{{user.username}}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'App_Video:upload_video' %}">Upload Video</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{% url 'App_Video:my_videos' %}">My Videos</a></li>
-                                <li><a class="dropdown-item" href="{% url 'App_Login:profile' %}">My Profile</a></li>
-                                <hr>
-                                <li><a class="dropdown-item" href="{% url 'App_Login:logout_profile' %}">logout</a></li>
-                            </ul>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'App_Video:upload_video' %}">Upload
+                                Video</a>
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'App_Video:my_videos' %}">My
+                                Videos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'App_Login:profile' %}">My
+                                Profile</a></li>
+                        <hr>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'App_Login:logout_profile' %}">logout</a>
+                        </li>
+                        <li class="nav-link disabled">@{{user.username}}</a></li>
+
 
                         {% else %}
                         <li class="nav-item">
@@ -57,9 +55,16 @@
                             <a class="nav-link active" aria-current="page"
                                 href="{% url 'App_Login:login_profile' %}">login</a>
                         </li>
-
                         {% endif %}
+
                     </ul>
+                    <form class="d-flex" role="search" method="POST" action="{% url 'App_Video:search_list' %}">
+                        <input class="form-control me-2" type="search" placeholder="Search Videos" aria-label="Search"
+                            name="searched">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                        {% csrf_token %}
+                    </form>
+
                 </div>
             </div>
         </nav>

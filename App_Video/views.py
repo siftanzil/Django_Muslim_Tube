@@ -31,10 +31,19 @@ class VideoList(ListView):
     template_name = 'App_Video/video_list.html'
 
 
-class CategoryList(ListView):
-    context_object_name = 'videos'
-    model = Video
-    template_name = 'App_Video/category_list.html'
+def CategoryList(request, category):
+    videos = Video.objects.filter(category=category)
+    return render(request, 'App_Video/category_list.html', context={'videos': videos, 'category': category})
+
+
+def search_list(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        videos = Video.objects.filter(video_title__contains=searched)
+        return render(request, "App_Video/search_list.html", context={'searched': searched, 'videos': videos})
+
+    else:
+        return render(request, "App_Video/search_list.html", context={})
 
 
 class MyVideos(LoginRequiredMixin, TemplateView):

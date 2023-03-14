@@ -12,8 +12,9 @@
     </div>
     <div class="col-sm-8">
         <p>{{video.video_description}} </p>
-        <h6>{{video.liked_video.count}} Likes | {{video.video_comment.count}} Comments</h6>
-        <h6>Posted By: <a href="#">@{{video.uploader}}</a></h6>
+        <h6>{{video.liked_video.count}} Likes | {{video.video_comment.count}} Comments | <a
+                href="{% url 'App_Video:category_list' category=video.category %}">{{video.category}}</a></h6>
+        <h6>Posted By: {{video.uploader}}</a></h6>
     </div>
 </div>
 <hr>

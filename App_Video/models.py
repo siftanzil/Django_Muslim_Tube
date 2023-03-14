@@ -15,6 +15,13 @@ category_choices = (
 # Create your models here.
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 class Video(models.Model):
     uploader = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='video_uploader')
@@ -24,7 +31,7 @@ class Video(models.Model):
     video_link = models.URLField(max_length=264, unique=False)
     video_description = models.TextField(verbose_name="Video description")
     category = models.CharField(
-        max_length=21, choices=category_choices, default='Others')
+        max_length=255, choices=category_choices, default='Islamic')
     video = models.FileField(upload_to='video-files', verbose_name='video',
                              validators=[FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
     video_thumb = models.ImageField(
@@ -61,4 +68,4 @@ class Like(models.Model):
         User, on_delete=models.CASCADE, related_name='liker_user')
 
     def __str__(self):
-        return self.user + " likes " + self.video
+        return str(self.user) + " likes " + str(self.video)
