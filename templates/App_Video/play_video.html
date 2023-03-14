@@ -1,55 +1,52 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-{% block title_block %} {{video.video_title}} {% endblock %}
-{% block body_block %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title_block %}
+{{video.video_title}} {% endblock %} {% block body_block %}
 
 <div class="container">
-    <video width="97%" max-width="720px" controls poster="/media/{{video.video_thumb}}">
-        <source src="/media/{{video.video}}" type="video/mp4">
-    </video>
-    <h2>{{video.video_title}}</h2>
-    <h4>Posted By: @{{video.uploader}}</h4>
-    <div>
-        <i>
-            <h6>Published On: {{video.publish_date}}</h6>
-        </i>
-    </div>
-    {% if not liked %}
-    <a href="{% url 'App_Video:liked_post' pk=video.pk %}">
-        <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
-    </a>
-    {% else %}
-    <a href="{% url 'App_Video:unliked_post' pk=video.pk %}">
-        <i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i>
-    </a>
-    {% endif %}
-    <div class="col-sm-6">
-        <h6>{{video.liked_video.count}} Likes | {{video.video_comment.count}} Comments</h6>
-    </div>
-    <div>
-        <p>
-            {{video.video_description|linebreaks}}
-        </p>
-    </div>
+   <video
+      width="100%"
+      max-width="720px"
+      controls
+      poster="/media/{{video.video_thumb}}">
+      <source src="/media/{{video.video}}" type="video/mp4" />
+   </video>
+   <h4>{{video.video_title}}</h4>
+   <h6>{{video.uploader}} | <i>{{video.publish_date}}</i></h6>
+   <p>
+      {{video.liked_video.count}} Likes | {{video.video_comment.count}} Comments
+   </p>
 
-    <div>
-        <hr>
-        <h5>Comments:</h5>
-        {% for comment in video.video_comment.all %}
-        <p><a href="#">@ <b>{{comment.user}}</b></a> {{comment.comment}}</p>
-        <p>{{comment.comment_date}}</p>
-        {% endfor %}
-    </div>
-    <br>
-    <div>
-        <form method="POST">
-            {{ comment_form|crispy }}
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary btn-sm">Comment</button>
-        </form>
-    </div>
+   {% if not liked %}
+   <a href="{% url 'App_Video:liked_post' pk=video.pk %}">
+      <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+   </a>
+   {% else %}
+   <a href="{% url 'App_Video:unliked_post' pk=video.pk %}">
+      <i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i>
+   </a>
+   {% endif %}
+   <br />
+   <hr />
+   <h6>Video desciption</h6>
+   <div class="overflow-scroll" style="height: 150px">
+      <p>{{video.video_description|linebreaks}}</p>
+   </div>
+   <div>
+      <form method="POST">
+         {{ comment_form|crispy }} {% csrf_token %}
+         <button type="submit" class="btn btn-primary btn-sm">Comment</button>
+      </form>
+   </div>
+   <div class="overflow-scroll">
+      <hr />
+      <h5>Comments:</h5>
+      {% for comment in video.video_comment.all %}
+      <p>
+         <a href="#">@ <b>{{comment.user}}</b></a> {{comment.comment}}
+      </p>
+      <p>{{comment.comment_date}}</p>
+      {% endfor %}
+   </div>
+   <br />
 </div>
-
-
 
 {% endblock %}

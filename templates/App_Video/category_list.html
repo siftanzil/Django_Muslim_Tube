@@ -8,13 +8,12 @@
 <h5>{{video.video_title}}</h5>
 <h6><i>{{video.publish_date}}</i></h6>
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-8">
         <a href="{% url 'App_Video:play_video' slug=video.slug %}"><img src="/media/{{video.video_thumb}}"
                 alt="{{video.video_title}}" title="{{video.video_title}}" width="100%">
         </a>
     </div>
-    <div class="col-sm-8">
-        <p>{{video.video_description}} </p>
+    <div class="col-sm-4">
         <h6>{{video.liked_video.count}} Likes | {{video.video_comment.count}} Comments </h6>
         <h6>Posted By: {{video.uploader}}</a></h6>
     </div>

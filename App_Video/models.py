@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 
 category_choices = (
-    ("1", "Quran"),
-    ("2", "Hadith"),
-    ("3", "Fiqh"),
-    ("4", "Heart Softener"),
-    ("5", "Biography"),
-    ("6", "Debate"),
-    ("7", "Dawah")
+    ("Quran", "Quran"),
+    ("Hadith", "Hadith"),
+    ("Fiqh", "Fiqh"),
+    ("Heart Softener", "Heart Softener"),
+    ("Biography", "Biography"),
+    ("Debate", "Debate"),
+    ("Dawah", "Dawah")
 )
 
 # Create your models here.
