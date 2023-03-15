@@ -16,6 +16,11 @@ def create_profile(request):
         if form.is_valid():
             form.save()
             registered = True
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password1"]
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
     diction = {'form': form, 'registered': registered}
     return render(request, "App_Login/create_profile.html", context=diction)
 
